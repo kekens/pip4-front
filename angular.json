@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "pip4front"
+    }
+  },
+  "defaultProject": "pip4front",
+  "cli": {
+    "analytics": "7207d34f-24a1-4a0d-a2f5-827256d8214a"
+  }
 }
