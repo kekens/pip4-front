@@ -3,15 +3,8 @@
   background-size: 100%;
 }
 
-.container {
-  display: grid;
-  height: 90vh;
-  grid-gap: 1em;
-  grid-template-columns: 1fr 1fr;
-}
-
 #mainText {
-  position: fixed;
+  position: absolute;
   width: 500px;
   text-align: center;
   top: 25vh;
@@ -23,7 +16,7 @@
 }
 
 #time {
-  position: fixed;
+  position: absolute;
   width: 500px;
   text-align: center;
   top: 35vh;
@@ -52,7 +45,7 @@
   width: 350px;
   height: auto;
   /*white-space: pre-line;*/
-  font-size: 30px;
+  font-size: 34px;
   font-family: 'Comfortaa', sans-serif;
   color: #e1e1e1;
   background: black;
