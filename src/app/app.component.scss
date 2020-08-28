@@ -1,17 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic|Comfortaa|Roboto&display=swap');
 
-* {
-  margin: 0 !important;
-  padding: 0;
-  text-align: center;
-}
-
-body {
-  //border: 2px solid red;
-  width: 100%;
-  left: 0;
-}
-
 #content {
   height: 94vh;
 }
@@ -22,36 +10,32 @@ body {
   grid-gap: 1em;
 }
 
-.container > div {
-  /*border: 5px solid blue;*/
-}
-
-#sidebar {
-  position: fixed;
-  width: 200px;
-  height: 100%;
-  background: #040404;
-  left: -200px;
-  transition: all 350ms linear;
-}
-
-#sidebar.active {
-  left: 0px;
-}
-
-.toggle-btn {
-  position: absolute;
-  left: 230px;
-  top: 12px;
-}
-
-.toggle-btn > span {
-  display: block;
-  width: 30px;
-  height: 3px;
-  background: black;
-  margin: 3px 0px;
-}
+//#sidebar {
+//  position: fixed;
+//  width: 200px;
+//  height: 100%;
+//  background: #040404;
+//  left: -200px;
+//  transition: all 350ms linear;
+//}
+//
+//#sidebar.active {
+//  left: 0px;
+//}
+//
+//.toggle-btn {
+//  position: absolute;
+//  left: 230px;
+//  top: 12px;
+//}
+//
+//.toggle-btn > span {
+//  display: block;
+//  width: 30px;
+//  height: 3px;
+//  background: black;
+//  margin: 3px 0px;
+//}
 
 #sidebar > ul > li {
   color: white;
