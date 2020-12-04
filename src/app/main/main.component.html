@@ -1,0 +1,147 @@
+<section>
+  <div id="header">
+    <div class="container-header container-header-desktop">
+      <div>
+        Бобряков Кирилл P3212
+      </div>
+
+      <div style="display: flex; align-items: center; padding-top: 2px;">
+        <span style="margin-right: 25px;">
+          Вариант 131614
+        </span>
+        <button pButton type="button" icon="pi pi-times" (click)="logout()" class="p-button-rounded p-button-danger p-button-outlined button-logout"></button>
+      </div>
+    </div>
+
+    <div class="container-header container-header-mobile">
+      <div>
+        Кирилл P3212
+      </div>
+
+      <div style="display: flex; align-items: center; padding-top: 2px;">
+        <span style="margin-right: 25px;">
+          Вар. 131614
+        </span>
+        <button pButton type="button" icon="pi pi-times" (click)="logout()" class="p-button-rounded p-button-danger p-button-outlined button-logout"></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content">
+    <div class="container">
+      <div class="container-part container-left">
+
+        <div #svg class="container-svg">
+          <svg viewBox="0 0 100 100" id="svg-area" on-click="clickDot($event)">
+            <line x1="4" y1="50" x2="92.5" y2="50" stroke="black" stroke-width="0.5" />
+            <line x1="50" y1="4" x2="50" y2="92.5" stroke="black" stroke-width="0.5" />
+
+            <polygon points="50 2.5, 47.5 7.5, 52.5 7.5" stroke="black" fill="black"/>
+            <polygon points="97.5 50, 92.5 47.5, 92.5 52.5" stroke="black" fill="black"/>
+
+            <line x1="48.25" y1="15" x2="51.75" y2="15" stroke="black" stroke-width="0.5" />
+            <line x1="48.25" y1="32.5" x2="51.75" y2="32.5" stroke="black" stroke-width="0.5" />
+            <line x1="67.5" y1="48.25" x2="67.5" y2="51.75" stroke="black" stroke-width="0.5" />
+            <line x1="85" y1="48.25" x2="85" y2="51.75" stroke="black" stroke-width="0.5" />
+            <line x1="32.5" y1="48.25" x2="32.5" y2="51.75" stroke="black" stroke-width="0.5" />
+            <line x1="15" y1="48.25" x2="15" y2="51.75" stroke="black" stroke-width="0.5" />
+            <line x1="48.25" y1="67.5" x2="51.75" y2="67.5" stroke="black" stroke-width="0.5" />
+            <line x1="48.25" y1="85" x2="51.75" y2="85" stroke="black" stroke-width="0.5" />
+
+            <rect class="svg-figure" width="35" height="17.5" x="50" y="50" stroke="black" stroke-width="0.5" />
+            <polygon class="svg-figure" points="50 50, 67.5 50, 50 32.5" stroke="black" stroke-width="0.5" />
+            <path class="svg-figure" stroke="black" stroke-width="0.5" d="M15,50 A35,35 0 0,0 50,85 L50,50 L15,50" />
+
+            <text class="svg-text-number" [textContent]="-dotForm.get('r').value" x="55" y="86.25"></text>
+<!--            <text class="svg-text-number" [textContent]="dotForm.get('r').value" x="220" y="275"></text>-->
+            <text class="svg-text-number" [textContent]="-dotForm.get('r').value" x="13.75" y="46.25"></text>
+            <text class="svg-text-number" [textContent]="-dotForm.get('r').value/2" x="28.75" y="46.25"></text>
+            <text class="svg-text-number" [textContent]="dotForm.get('r').value" x="83.75" y="46.25"></text>
+            <text class="svg-text-number" [textContent]="dotForm.get('r').value/2" x="66.25" y="46.25"></text>
+            <text class="svg-text-number" [textContent]="dotForm.get('r').value" x="55" y="16.25"></text>
+            <text class="svg-text-number" [textContent]="dotForm.get('r').value/2" x="55" y="33.75"></text>
+
+            <circle [@dotAnim] *ngFor="let dot of dots" [attr.cx]="dot.x / dotForm.get('r').value * 35 + 50"
+                  [attr.cy]="dot.y / dotForm.get('r').value * (-35) + 50" r="1.25" stroke-width="0.25" [style.stroke]="dot.result ? 'black' : 'white' "
+            [style.fill]="dot.result ? 'white' : 'black'" [style.visibility]="dot.r == dotForm.get('r').value ? 'visible' : 'hidden'"/>
+
+          </svg>
+        </div>
+
+        <div class="container-input">
+          <form [formGroup]="dotForm" (ngSubmit)="addDot()">
+            <span>X</span>
+            <div class="custom-slider">
+              <ng5-slider formControlName="x" [options]="optionsXY"></ng5-slider>
+            </div>
+
+            <span>Y</span>
+            <div class="custom-slider">
+              <ng5-slider formControlName="y" [options]="optionsXY"></ng5-slider>
+            </div>
+
+            <span>R</span>
+            <div class="custom-slider">
+              <ng5-slider formControlName="r" [options]="optionsR"></ng5-slider>
+            </div>
+
+            <button type="submit" class="submit">
+              Отправить
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="container-part container-right">
+        <table class="table-result">
+          <tr class="table-result-header">
+            <td>
+              X
+            </td>
+
+            <td>
+              Y
+            </td>
+
+            <td>
+              R
+            </td>
+
+            <td>
+              Результат
+            </td>
+
+            <td>
+              Время
+            </td>
+          </tr>
+
+          <ng-container *ngFor="let dot of dots">
+            <tr *ngIf="dot.r == dotForm.get('r').value" [@dotResultRowAnim] class="table-result-row">
+              <td>
+                {{ dot.x.toFixed(4) }}
+              </td>
+
+              <td>
+                {{ dot.y.toFixed(4) }}
+              </td>
+
+              <td>
+                {{ dot.r }}
+              </td>
+
+              <td [style.background]="dot.result ? 'white' : 'black'" [style.color]="dot.result ? 'black' : 'white'">
+                {{ dot.result ? 'Внутри' : 'Снаружи' }}
+              </td>
+
+              <td>
+                {{ dot.time.substr(11) }}
+              </td>
+            </tr>
+          </ng-container>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

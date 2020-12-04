@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+  <div class="container-form container-sign-up" id="container-sign-up">
+    <div class="container-form-tittle">
+      <span style="font-size: 40px;">Создание аккаунта</span>
+    </div>
+
+    <form class="form-auth" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <span class="p-input-icon-left">
+        <i class="pi pi-user"></i>
+        <input (ngModelChange)="setValid()" type="text" formControlName="username" pInputText placeholder="Имя пользователя">
+      </span>
+      <span *ngIf="registerForm.controls['username'].invalid && registerForm.controls['username'].touched ? setValid() : false" class="error-msg">
+        Введите имя пользователя <br> (3-16 знаков, только лат. символы)
+      </span>
+      <span *ngIf="!isUsernameFree && registerForm.controls['username'].untouched" class="error-msg">
+        Имя пользователя занято
+      </span>
+
+      <span style="margin-top: 8px;" class="p-input-icon-left">
+        <i class="pi pi-lock"></i>
+        <input (ngModelChange)="setValid()" type="password" formControlName="password" pPassword placeholder="Пароль">
+      </span>
+      <span *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched ? setValid(): false" class="error-msg">
+        Введите пароль (8-20 знаков)
+      </span>
+
+      <button [style.margin-top]="isInvalid ? '50px' : '100px'" type="submit" [disabled]="isInvalid"
+              [style.background]="isInvalid ? 'lightgray' : 'white'" [class]="isInvalid ? 'disabled-button' : 'button-auth'">Зарегистрироваться</button>
+    </form>
+
+    <p [style.margin-top]="isInvalid || !isUsernameFree ? '60px' : '100px'">Уже есть учетная запись?
+      <button class="button-auth transition" id="sign-in-transition">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        Войдите
+      </button>
+    </p>
+  </div>
+</body>
+</html>
+

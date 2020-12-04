@@ -1,41 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Home</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-</head>
-<body>
+<app-header></app-header>
+<div id="content">
+  <div id="mainText">
+    Выбор точки
+  </div>
 
-  <app-header></app-header>
-
-  <div id="content">
-
-      <div id="mainText">
-        Выбор точки
-      </div>
-
-      <div id="time">
-        <div id="day">
-          {{ time | date: 'dd/MM/y' }}
-        </div>
-        <div id="hour">
-          {{ time | date: 'HH:mm:ss' }}
-        </div>
-      </div>
-
-      <div id="div-button-trans">
-        <button class="btn-trans">
-          Перейти
-          <i class="fa fa-external-link"></i>
-        </button>
-<!--                <h:form>-->
-<!--                  <h:commandLink styleClass="btn-trans" value="Перейти"  action="#{controller.redirect('main')}">-->
-<!--                  </h:commandLink>-->
-<!--                </h:form>-->
-      </div>
-
+  <div id="time">
+    <div id="day">
+       {{ time | date: 'dd/MM/y' }}
     </div>
+    <div id="hour">
+      {{ time | date: 'HH:mm:ss' }}
+    </div>
+  </div>
 
-</body>
-</html>
+  <div id="div-button-trans">
+    <button (click)="navigate()" class="btn-trans">
+      Перейти
+      <i class="fa fa-external-link"></i>
+    </button>
+  </div>
+
+</div>
